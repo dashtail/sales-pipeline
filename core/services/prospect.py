@@ -13,8 +13,8 @@ class ProspectService:
         national_registry_api = NationalRegistryAPI()
 
         judicial_records, national_registry_response = await asyncio.gather(
-            judicial_api.get_person_judicial_history(person.NRI),
-            national_registry_api.get_person_by_NRI(person.NRI),
+            judicial_api.get_person_judicial_history(person.NIN),
+            national_registry_api.get_person_by_NIN(person.NIN),
         )
 
         if national_registry_response.status_code == 200:

@@ -1,7 +1,7 @@
 import asyncio
 import unittest
 
-from core.entities.person import Person, NRI_PERSON_ONE
+from core.entities.person import Person, NIN_PERSON_ONE
 from core.utils.validate import validate_person_informations
 
 
@@ -20,11 +20,11 @@ class TestPerson(unittest.TestCase):
         )
 
     def test_valid_person_informations(self):
-        self.assertTrue(validate_person_informations(self.person, NRI_PERSON_ONE))
+        self.assertTrue(validate_person_informations(self.person, NIN_PERSON_ONE))
 
     def test_invalid_person_informations(self):
         self.assertFalse(
-            validate_person_informations(self.another_person, NRI_PERSON_ONE)
+            validate_person_informations(self.another_person, NIN_PERSON_ONE)
         )
 
   

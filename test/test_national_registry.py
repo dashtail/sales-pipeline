@@ -2,7 +2,7 @@ import asyncio
 import json
 import unittest
 from externals.api.national_registry_api import NationalRegistryAPI
-from core.entities.person import Person, NRI_PERSON_ONE
+from core.entities.person import Person, NIN_PERSON_ONE
 from core.utils.validate import validate_person_informations
 
 
@@ -23,12 +23,12 @@ class TestNationalRegistryAPI(unittest.IsolatedAsyncioTestCase):
         self.api = NationalRegistryAPI()
 
     async def test_check_if_person_exist_in_national_registry(self):
-        response = await self.api.get_person_by_NRI(self.person.NRI)
+        response = await self.api.get_person_by_NIN(self.person.NIN)
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.text, json.dumps(NRI_PERSON_ONE.__dict__))
+        self.assertEqual(response.text, json.dumps(NIN_PERSON_ONE.__dict__))
 
     async def test_check_if_person_not_exist_in_national_registry(self):
-        response = await self.api.get_person_by_NRI(self.another_person.NRI)
+        response = await self.api.get_person_by_NIN(self.another_person.NIN)
         self.assertEqual(response.status_code, 404)
         self.assertEqual(response.text, "Person not found in national registry")
 

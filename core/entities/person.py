@@ -4,7 +4,7 @@ from datetime import datetime
 class Person:
     def __init__(
         self,
-        NRI: str,
+        NIN: str,
         birth_date: datetime,
         first_name: str,
         last_name: str,
@@ -12,7 +12,7 @@ class Person:
         prospect: bool = False,
         score: int = 0,
     ):
-        self.NRI = NRI
+        self.NIN = NIN
         self.birth_date = birth_date
         self.first_name = first_name
         self.last_name = last_name
@@ -30,7 +30,7 @@ class Person:
         if not isinstance(other, Person):
             return NotImplemented
         return (
-            self.NRI == other.NRI
+            self.NIN == other.NIN
             and self.birth_date == other.birth_date
             and self.first_name == other.first_name
             and self.last_name == other.last_name
@@ -38,14 +38,14 @@ class Person:
         )
 
 
-NRI_PERSON_ONE = Person(
+NIN_PERSON_ONE = Person(
     "00112233", "1992/07/25", "Peter", "Monteiro", "peter.monteiro@example.com"
 )
-NRI_PERSON_TWO = Person(
+NIN_PERSON_TWO = Person(
     "99887766", "1993/05/05", "LUCAS", "SILVA", "lucas.silva@example.com"
 )
-NRI_PERSON_THREE = Person(
+NIN_PERSON_THREE = Person(
     "11445599", "1993/01/19", "DAVID", "LUIS", "david.luis@example.com"
 )
 
-PERSONS = [NRI_PERSON_ONE, NRI_PERSON_TWO, NRI_PERSON_THREE]
+PERSONS = [NIN_PERSON_ONE, NIN_PERSON_TWO, NIN_PERSON_THREE]

@@ -2,7 +2,7 @@ import asyncio
 import unittest
 
 from unittest.mock import patch
-from core.entities.person import Person, NRI_PERSON_TWO
+from core.entities.person import Person, NIN_PERSON_TWO
 from core.services.prospect import ProspectService
 from externals.api.judicial_history_api import JudicialHistoryAPI
 from externals.api.national_registry_api import NationalRegistryAPI
@@ -27,15 +27,15 @@ class TestProspectQualification(unittest.IsolatedAsyncioTestCase):
         self.prospect_service = ProspectService()
 
     @patch.object(JudicialHistoryAPI, "get_person_judicial_history")
-    @patch.object(NationalRegistryAPI, "get_person_by_NRI")
+    @patch.object(NationalRegistryAPI, "get_person_by_NIN")
     @patch.object(ProspectService, "get_score")
     async def test_person_prospect_qualification_score_greater_then_60(
-        self, mock_get_score, mock_get_person_by_NRI, mock_get_person_judicial_history
+        self, mock_get_score, mock_get_person_by_NIN, mock_get_person_judicial_history
     ):
         mock_get_person_judicial_history.return_value = (
             get_judicial_history_mocker_response("99887766")
         )
-        mock_get_person_by_NRI.return_value = get_national_registry_mocker_response(
+        mock_get_person_by_NIN.return_value = get_national_registry_mocker_response(
             "99887766"
         )
         mock_get_score.return_value = 75
@@ -44,15 +44,15 @@ class TestProspectQualification(unittest.IsolatedAsyncioTestCase):
         self.assertTrue(self.person.prospect)
 
     @patch.object(JudicialHistoryAPI, "get_person_judicial_history")
-    @patch.object(NationalRegistryAPI, "get_person_by_NRI")
+    @patch.object(NationalRegistryAPI, "get_person_by_NIN")
     @patch.object(ProspectService, "get_score")
     async def test_person_prospect_qualification_score_less_then_60(
-        self, mock_get_score, mock_get_person_by_NRI, mock_get_person_judicial_history
+        self, mock_get_score, mock_get_person_by_NIN, mock_get_person_judicial_history
     ):
         mock_get_person_judicial_history.return_value = (
             get_judicial_history_mocker_response("99887766")
         )
-        mock_get_person_by_NRI.return_value = get_national_registry_mocker_response(
+        mock_get_person_by_NIN.return_value = get_national_registry_mocker_response(
             "99887766"
         )
         mock_get_score.return_value = 32
@@ -61,14 +61,14 @@ class TestProspectQualification(unittest.IsolatedAsyncioTestCase):
         self.assertFalse(self.person.prospect)
 
     @patch.object(JudicialHistoryAPI, "get_person_judicial_history")
-    @patch.object(NationalRegistryAPI, "get_person_by_NRI")
-    async def test_if_person_nri_not_exist_in_national_registry(
-        self, mock_get_person_by_NRI, mock_get_person_judicial_history
+    @patch.object(NationalRegistryAPI, "get_person_by_NIN")
+    async def test_if_person_nin_not_exist_in_national_registry(
+        self, mock_get_person_by_NIN, mock_get_person_judicial_history
     ):
         mock_get_person_judicial_history.return_value = (
             get_judicial_history_mocker_response("3344220000")
         )
-        mock_get_person_by_NRI.return_value = get_national_registry_mocker_response(
+        mock_get_person_by_NIN.return_value = get_national_registry_mocker_response(
             "3344220000"
         )
 

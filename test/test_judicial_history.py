@@ -1,7 +1,7 @@
 import asyncio
 import unittest
 from externals.api.judicial_history_api import JudicialHistoryAPI
-from core.entities.person import Person, NRI_PERSON_ONE
+from core.entities.person import Person, NIN_PERSON_ONE
 from core.utils.validate import validate_person_informations
 
 
@@ -22,11 +22,11 @@ class TestJudicialHistoryAPI(unittest.IsolatedAsyncioTestCase):
         self.api = JudicialHistoryAPI()
 
     async def test_check_if_not_exist_any_judicial_records(self):
-        response = await self.api.get_person_judicial_history(self.person.NRI)
+        response = await self.api.get_person_judicial_history(self.person.NIN)
         self.assertEqual(response, '{"message": "No judicial records found"}')
     
     async def test_check_if_exist_any_judicial_records(self):
-        response = await self.api.get_person_judicial_history(self.another_person.NRI)
+        response = await self.api.get_person_judicial_history(self.another_person.NIN)
         self.assertEqual(response, '{"message": "One or more judicial records found."}')
 
     

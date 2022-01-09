@@ -7,8 +7,8 @@ from .national_registry_mocker import get_national_registry_mocker_response
 
 
 class NationalRegistryAPI:
-    async def get_person_by_NRI(self, nri):
+    async def get_person_by_NIN(self, nin):
         await asyncio.sleep(randint(1, 3))
-        response = get_national_registry_mocker_response(nri)
+        response = get_national_registry_mocker_response(nin)
 
         return response
