@@ -1,4 +1,5 @@
-# addi-sales-pipeline
+# sales-pipeline
+This project was for an interview
 
 # Setup
 Python 3.7+ is required.
